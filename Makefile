@@ -25,7 +25,7 @@ SDK_INCLUDE_DIRS += -I$(SDK_HEADER_DIR)
 
 #Add Linker Flags
 LD_FLAG += -lcurl
-LD_FLAG += -lappdynamics_iot
+LD_FLAG += -lappdynamicsiotsdk
 LD_FLAG += -L$(SDK_LIB_DIR)
 
 #Aggregate all include and src directories

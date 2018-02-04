@@ -17,7 +17,7 @@
 
 #include <stdio.h>
 #include <time.h>
-#include <appd_iot_interface.h>
+// TODO include appd sdk header
 #include <unistd.h>
 #include "http_curl_interface.hpp"
 #include "log.hpp"
@@ -67,8 +67,8 @@ int main(int argc, char* argv[])
   appd_iot_init_to_zero(&sdkcfg, sizeof(sdkcfg));
   appd_iot_init_to_zero(&devcfg, sizeof(devcfg));
 
-  sdkcfg.appkey = get_app_key();
-  sdkcfg.eum_collector_url = get_collector_url();
+  // TODO initialize the SDK by setting app_key and collector_url from cli options.
+  // see next line for a HINT.
   sdkcfg.log_level = get_log_level();
 
   //If set to NULL and log level is not OFF, logs will be written to stderr
@@ -100,10 +100,10 @@ int main(int argc, char* argv[])
 
   //Step2: register http interface callbacks
   appd_iot_http_cb_t http_cb;
-  http_cb.http_req_send_cb = &http_curl_req_send_cb;
-  http_cb.http_resp_done_cb = &http_curl_resp_done_cb;
+  // TODO register callbacks http_curl_req_send_cb and http_curl_resp_done_cb
 
-  errcode = appd_iot_register_network_interface(http_cb);
+  // TODO register the network interface
+  // errcode = 
 
   if (errcode != APPD_IOT_SUCCESS)
   {
@@ -113,6 +113,8 @@ int main(int argc, char* argv[])
     return 1;
   }
 
+  // TODO uncomment this block after you have successfully initialized the SDK
+  /*
   event_type event = get_event_type();
 
   //Step3: send events
@@ -145,11 +147,6 @@ int main(int argc, char* argv[])
     send_error_event_fatal();
   }
 
-  /**
-   * It is recommended to move below functionality into a separate thread
-   * or use asynchronous timers instead of sleep. Below code is provided for reference to
-   * periodically check with AppDynamics Collector if SDK can be enabled.
-   */
   if ((sdk_state == APPD_IOT_SDK_DISABLED_KILL_SWITCH) ||
       (sdk_state == APPD_IOT_SDK_DISABLED_LICENSE_EXPIRED) ||
       (sdk_state == APPD_IOT_SDK_DISABLED_DATA_LIMIT_EXCEEDED))
@@ -171,7 +168,7 @@ int main(int argc, char* argv[])
       r--;
     }
   }
-
+  */
   free_options();
   close_log();
   appd_iot_clear_all_events();

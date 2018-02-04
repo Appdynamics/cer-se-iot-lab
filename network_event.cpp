@@ -88,7 +88,8 @@ void capture_and_send_network_event(const char* url, const char* type, const cha
   appd_iot_data_set_string(&http_req.headers[0], "Accept", "application/json");
   appd_iot_data_set_string(&http_req.headers[1], "Content-Type", "application/json");
 
-  const appd_iot_data_t* correlation_headers = appd_iot_get_server_correlation_headers();
+  // TODO get server correlation headers from SDK
+  const appd_iot_data_t* correlation_headers;
 
   int req_idx = 2;
 

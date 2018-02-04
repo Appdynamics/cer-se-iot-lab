@@ -31,7 +31,7 @@ void send_error_event_alert(void)
 
   error_event.name = "Warning Light";
   error_event.message = "Oil Change Reminder";
-  error_event.severity = APPD_IOT_ERR_SEVERITY_ALERT;
+  // TODO set event severity to ALERT
   error_event.timestamp_ms = ((int64_t)time(NULL) * 1000);
   error_event.duration_ms = 0;
 
@@ -146,7 +146,7 @@ void send_error_event_fatal(void)
   stack_frame[3].file_name = "writedata.c";
   stack_frame[3].lineno = 524;
 
-  error_event.stack_trace = stack_trace;
+  // TODO set the stack trace on error event
 
   error_event.data_count = 4;
   error_event.data = (appd_iot_data_t*)calloc(error_event.data_count, sizeof(appd_iot_data_t));

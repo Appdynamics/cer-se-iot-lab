@@ -26,7 +26,7 @@ void send_custom_event(void)
   appd_iot_custom_event_t custom_event;
   appd_iot_error_code_t retcode;
 
-  appd_iot_init_to_zero(&custom_event, sizeof(custom_event));
+  // TODO initialize the custom event struct
 
   custom_event.type = "Smart Car";
   custom_event.summary = "Events Captured in Smart Car";
@@ -41,16 +41,12 @@ void send_custom_event(void)
     return;
   }
 
-  appd_iot_data_set_string(&custom_event.data[0], "VinNumber", "VN123456");
-  appd_iot_data_set_integer(&custom_event.data[1], "MPG Reading", 23);
-  appd_iot_data_set_integer(&custom_event.data[2], "Annual Mileage", 12000);
-  appd_iot_data_set_double(&custom_event.data[3], "Temperature", 101.3);
-  appd_iot_data_set_boolean(&custom_event.data[4], "Engine Lights ON", false);
-
+  // TODO add some data to the custom event. Use
+  // appd_iot_data_set_string, _integer, _double, _boolean and _datetime.
   int64_t engine_start_time = ((int64_t)time(NULL) * 1000);
-  appd_iot_data_set_datetime(&custom_event.data[5], "Last Engine Start Time", engine_start_time);
 
-  retcode = appd_iot_add_custom_event(custom_event);
+  // TODO send the custom event
+  // retcode = 
   fprintf(stdout, "Add Custom Event Status :%s\n", appd_iot_error_code_to_str(retcode));
 
   free(custom_event.data);
